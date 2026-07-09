@@ -66,10 +66,10 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Peak jump height (m) on flat ground. Converted to an upward impulse using current gravity.")]
     public float jumpHeight = 1.8f;
     [Tooltip("Extra gravity multiplier while falling, for a snappier arc.")]
-    public float fallGravityMultiplier = 1.5f;
+    public float fallGravityMultiplier = 1.0f;
     public float coyoteTime = 0.1f;
     public float jumpBufferTime = 0.1f;
-
+ 
     [Header("Stepping")]
     [Tooltip("Tallest ledge the cylinder automatically steps up onto: its bottom is " +
              "teleported to the ledge top, preserving horizontal momentum. Never snaps down.")]
