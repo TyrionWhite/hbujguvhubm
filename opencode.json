@@ -1,0 +1,27 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "external_directory": "deny",
+    "skill": {
+      "*": "allow"
+    },
+    "bash": {
+      "*": "ask",
+      "git status*": "allow",
+      "git diff*": "allow",
+      "git log*": "allow",
+      "git show*": "allow",
+      "git branch*": "allow",
+      "git rev-parse*": "allow",
+      "git grep*": "allow",
+      "find *": "allow",
+      "grep *": "allow",
+      "rg *": "allow",
+      "git commit*": "ask",
+      "git push*": "ask",
+      "git merge*": "ask",
+      "rm -rf *": "deny",
+      "sudo *": "deny"
+    }
+  }
+}

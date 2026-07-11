@@ -1,0 +1,20 @@
+schema: spec-driven
+
+context: |
+  This repository combines project-level OpenCode/OpenSpec tooling with a Unity project under "My project/".
+  Repository files own portable permissions, OpenSpec commands and skills, planning artifacts, validation, and contributor documentation.
+  Provider/model selection and host authentication, services, users, and networking are machine-managed outside the repository.
+  Planning changes must not modify Unity content. Implementation requires an explicit apply request and must follow the approved tasks in order.
+
+rules:
+  proposal:
+    - Keep repository-owned tooling separate from machine-managed provider and host configuration.
+    - State explicitly when Unity content or repository publication is outside scope.
+  design:
+    - Prefer repository-relative or CLI-resolved paths over machine-specific paths.
+    - Preserve generated OpenSpec workflows unless a concrete gap, incompatibility, or drift requires a targeted change.
+  specs:
+    - Make planning, implementation, synchronization, archival, and publication boundaries testable.
+  tasks:
+    - Order tasks by dependency and mark them complete only after implementation and validation succeed.
+    - Include non-destructive validation and confirm whether Unity content is affected.
