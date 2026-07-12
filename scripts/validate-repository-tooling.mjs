@@ -20,6 +20,7 @@ const workflowPairs = {
 };
 
 const requiredFiles = [
+  "AGENTS.md",
   "opencode.json",
   "openspec/config.yaml",
   "CONTRIBUTING.md",
@@ -56,6 +57,28 @@ function read(relative) {
 }
 
 for (const file of requiredFiles) read(file);
+
+const agentsPolicy = read("AGENTS.md");
+for (const [area, token] of [
+  ["repository and Unity project boundaries", "## Project Structure"],
+  ["Git and Pull Request restrictions", "## Git Safety"],
+  ["OpenSpec planning and implementation boundaries", "## OpenSpec Workflow"],
+  ["Unity asset and serialization safety", "## Unity Safety"],
+  ["tracked metadata and GUID preservation", "Preserve every tracked `.meta` file and its GUID"],
+  ["generated Unity directory exclusions", "Do not edit generated or ignored Unity directories"],
+  ["scene and prefab serialization review", "Avoid unnecessary edits to scenes, prefabs, serialized `.asset` files"],
+  ["maintainable modular architecture", "## Maintainable Architecture"],
+  ["authoritative gameplay-state ownership", "Give each mutable gameplay value one authoritative owner"],
+  ["deterministic state resolution", "Resolve simultaneous action requests deterministically"],
+  ["debugging and diagnostics", "## Debuggability"],
+  ["comments and public API documentation", "Use XML documentation for public APIs"],
+  ["testability and regression expectations", "For every behavioral fix"],
+  ["validation and final reporting", "The completion report must list changed files"],
+]) {
+  if (!agentsPolicy.includes(token)) {
+    errors.push(`AGENTS.md: missing policy coverage for ${area}`);
+  }
+}
 
 const opencodeText = read("opencode.json");
 let opencodeConfig;

@@ -30,8 +30,8 @@
 ## OpenSpec Workflow
 
 - Use OpenSpec for implementation work that adds or changes product behavior, architecture, cross-system contracts, or repository workflows. Create or select the change before implementation; its planning artifacts define scope and task order.
-- Use `/opsx-explore` for investigation only. Use `/opsx-propose`, `/opsx-continue`, and `/opsx-update` for planning artifacts only; they must not modify Unity or implementation files.
-- Use `/opsx-apply <change-name>` only when implementation is explicitly requested. Read the paths returned by `openspec status --change "<change-name>" --json` and `openspec instructions apply --change "<change-name>" --json`, then apply only approved tasks in order.
+- Use `/opsx:explore` for investigation only. Use `/opsx:propose`, `/opsx:continue`, and `/opsx:update` for planning artifacts only; they must not modify Unity or implementation files.
+- Use `/opsx:apply <change-name>` only when implementation is explicitly requested. Read the paths returned by `openspec status --change "<change-name>" --json` and `openspec instructions apply --change "<change-name>" --json`, then apply only approved tasks in order.
 - Keep planning and implementation separate. If implementation exposes a design problem or requires work outside the approved tasks, pause and request an artifact update rather than silently expanding scope.
 - Mark a task complete only after its implementation and required validation succeed. Do not check off partial, unverified, or blocked work.
 - Strictly validate a change before implementation, sync, or archive with `openspec validate <change-name> --strict`.
