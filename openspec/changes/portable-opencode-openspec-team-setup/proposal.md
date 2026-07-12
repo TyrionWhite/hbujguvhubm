@@ -9,6 +9,7 @@ The repository's OpenCode and OpenSpec setup cannot yet be used consistently fro
 - Provide a complete and internally consistent OpenSpec command/skill lifecycle for proposing, continuing, updating, applying, syncing, and archiving changes.
 - Change generated OpenSpec commands and skills only when a command is missing, the patched OpenCode build is incompatible, or validation demonstrates drift.
 - Add repository-local OpenSpec configuration, contributor documentation, a Pull Request template, and non-destructive setup and drift validation.
+- Add root-level `AGENTS.md` as repository-owned contributor and coding-agent policy covering repository and Unity boundaries, Git and Pull Request restrictions, OpenSpec planning and implementation boundaries, Unity asset and serialization safety, maintainable gameplay architecture and authoritative state ownership, deterministic state resolution, diagnostics, useful documentation, testability, regression expectations, validation, and final reporting.
 - Verify the setup from a clean checkout and from a separate clone under a second Linux user while leaving Unity files unchanged.
 
 ## Capabilities
@@ -24,4 +25,4 @@ None. The repository has no existing capability specifications.
 
 ## Impact
 
-The eventual implementation will affect root `opencode.json`, repository-local `.opencode` commands and skills, `openspec/config.yaml`, contributor documentation, a Pull Request template, and non-destructive validation tooling. Provider configuration, model endpoints, credentials, authentication, Linux users, systemd services, private network configuration, custom agents, agent handoff contracts, `AGENTS.md`, custom Unity policy skills, and all Unity project content are outside this change. Applying the change will not commit, push, merge, or open a Pull Request.
+The eventual implementation will affect root `opencode.json` and `AGENTS.md`, repository-local `.opencode` commands and skills, `openspec/config.yaml`, contributor documentation, a Pull Request template, and non-destructive validation tooling. `AGENTS.md` is repository-owned policy for contributors and coding agents; it defines repository and Unity project boundaries, safe Git, OpenSpec, Unity, architecture, state, diagnostics, documentation, testing, validation, and reporting practices without changing Unity implementation files. Provider configuration, model endpoints, credentials, authentication, Linux users, systemd services, private network configuration, custom agents, agent handoff contracts, custom Unity policy skills, and all Unity project content remain outside this change. Applying the change will not commit, push, merge, or open a Pull Request.

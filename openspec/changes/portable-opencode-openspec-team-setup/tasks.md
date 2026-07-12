@@ -19,6 +19,8 @@
 
 - [x] 3.1 Expand `CONTRIBUTING.md` with patched-build and OpenSpec prerequisites, repository/machine ownership boundaries, all six lifecycle actions, external-store permission handling, validation, troubleshooting, and generated-workflow maintenance.
 - [x] 3.2 Add a Pull Request template that requests the related OpenSpec change, validation evidence, implementation scope, and confirmation of whether Unity content is affected without automating Pull Request creation.
+- [x] 3.3 Add root `AGENTS.md` as repository-owned contributor and coding-agent policy covering repository and Unity boundaries, Git and Pull Request restrictions, OpenSpec planning and implementation boundaries, Unity asset and serialization safety, maintainable modular architecture, authoritative gameplay-state ownership, deterministic state resolution, diagnostics, useful documentation, testability, regression expectations, validation, and final reporting.
+- [x] 3.4 Review `AGENTS.md` against the actual repository and Unity project structure, confirm it introduces no custom agent definitions, handoff contracts, or Unity-specific policy skills, and confirm this scope changes no Unity implementation or serialized content.
 
 ## 4. Implement Non-Destructive Validation
 
@@ -29,3 +31,5 @@
 - [x] 4.5 Repeat clean-clone validation under a pre-existing second Linux user and confirm it does not depend on the first user's checkout path, project configuration copies, credentials, or private values.
 - [x] 4.6 Compare repository status and path-scoped diffs before and after all validation runs to confirm no Unity content or generated Unity files changed.
 - [x] 4.7 Review the apply execution record and final repository state to confirm that no commit, push, merge, Pull Request creation, specification sync, or archive operation occurred during implementation.
+- [x] 4.8 Extend repository validation to require root `AGENTS.md` and verify its required policy coverage without rewriting the file, inspecting machine-managed secrets, invoking Unity, or changing repository state.
+- [x] 4.9 Run repository tooling validation and strict OpenSpec validation after adding `AGENTS.md`, compare status and path-scoped diffs before and after, and confirm no Unity content, custom agents, custom Unity policy skills, publication operations, specification sync, or archive operation were introduced.

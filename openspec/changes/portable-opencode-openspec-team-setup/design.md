@@ -1,6 +1,6 @@
 ## Context
 
-The repository contains a Unity project alongside a root `opencode.json`, repository-local OpenSpec state, and OpenSpec commands and skills under `.opencode/`. OpenSpec 1.6.0 and a team-maintained patched OpenCode build are used in the current environment, but a clean checkout does not document or validate the project-level contract. The generated workflow set also lacks a continue action and contains references that must be checked against the patched host.
+The repository contains a Unity project alongside root `opencode.json` and `AGENTS.md`, repository-local OpenSpec state, and OpenSpec commands and skills under `.opencode/`. OpenSpec 1.6.0 and a team-maintained patched OpenCode build are used in the current environment, but a clean checkout does not document or validate the complete project-level tooling and coding-agent policy contract. The generated workflow set also lacks a continue action and contains references that must be checked against the patched host.
 
 The team has approved a narrow portability change. Repository files will define OpenSpec workflows, commands, skills, portable permissions, and contributor guidance. Provider configuration, model endpoints, credentials, authentication, Linux users, systemd services, and private network configuration remain machine-managed and must not be copied into or required by the repository.
 
@@ -12,13 +12,14 @@ The team has approved a narrow portability change. Repository files will define 
 - Provide propose, continue, update, apply, sync, and archive actions through consistent repository-local command and skill entry points.
 - Verify required behavior under OpenSpec 1.6.0 and the team-maintained patched OpenCode build without embedding machine-managed configuration.
 - Add contributor guidance, a Pull Request template, and non-destructive validation, including validation from a separate clone under a second Linux user.
+- Establish root `AGENTS.md` as repository-owned contributor and coding-agent policy for safe, maintainable work in the repository and Unity project.
 - Preserve generated OpenSpec content unless a concrete gap, incompatibility, or verified drift requires a targeted change.
 
 **Non-Goals:**
 
 - Selecting, installing, or distributing a public stable OpenCode release.
 - Managing provider configuration, model endpoints, credentials, authentication, `/etc/opencode/team.json`, Linux accounts, systemd services, or private network configuration.
-- Defining repository-local planning, implementation, review, or verification agents, agent handoff contracts, or `AGENTS.md`.
+- Defining repository-local planning, implementation, review, or verification agents or agent handoff contracts.
 - Creating custom Unity policy skills or changing any Unity asset, package, project setting, generated file, or gameplay code.
 - Committing, pushing, merging, or opening a Pull Request while this change is applied.
 
@@ -26,7 +27,7 @@ The team has approved a narrow portability change. Repository files will define 
 
 ### Define an explicit repository and machine configuration boundary
 
-The repository source of truth consists of project-level `opencode.json` permissions without model endpoints, `.opencode` OpenSpec commands and skills, `openspec/config.yaml`, contributor documentation, the Pull Request template, and validation tooling. These files must use repository-relative or CLI-resolved paths and must not contain private addresses, passwords, API keys, or a dependency on `/etc/opencode/team.json`.
+The repository source of truth consists of project-level `opencode.json` permissions without model endpoints, root `AGENTS.md`, `.opencode` OpenSpec commands and skills, `openspec/config.yaml`, contributor documentation, the Pull Request template, and validation tooling. These files must use repository-relative or CLI-resolved paths and must not contain private addresses, passwords, API keys, or a dependency on `/etc/opencode/team.json`.
 
 Provider and model selection, endpoints, credentials, authentication, host users, services, and private networking remain machine-managed. The setup may document that compatible machine configuration is a prerequisite, but it will neither inspect secret values nor prescribe their storage. Making a machine-wide file the repository contract was rejected because it is not portable and risks exposing private configuration.
 
@@ -58,6 +59,12 @@ Acceptance will run first in the working checkout, then in a separate clean clon
 
 `CONTRIBUTING.md` will document prerequisites, lifecycle usage, validation, troubleshooting, and generated-workflow maintenance. A repository Pull Request template will request relevant OpenSpec change references, validation evidence, and confirmation that Unity scope is accurate. Adding the template does not create or submit a Pull Request.
 
+### Establish repository-owned coding-agent policy
+
+Root `AGENTS.md` will define the repository and Unity project boundaries that contributors and coding agents must respect. It will preserve Git and Pull Request restrictions; OpenSpec planning, implementation, sync, and archive boundaries; and Unity safety for assets, `.meta` files, GUIDs, generated directories, scenes, prefabs, and serialized content. It will not define custom agents, handoff contracts, provider behavior, or custom Unity policy skills.
+
+The policy will also set general engineering expectations for small composable modules, authoritative gameplay-state and movement-output ownership, deterministic state resolution, observable diagnostics, rationale-focused comments and public API contracts, independently testable logic, regression scenarios, non-destructive validation, and accurate final reporting. This guidance belongs in the same repository-owned setup because it governs how the configured tools safely extend the game, while implementation-specific architecture and gameplay changes remain subject to separately approved OpenSpec changes.
+
 ## Risks / Trade-offs
 
 - [The patched OpenCode build has no public stable identifier] -> Report its available version/build identity and verify required capabilities; defer distribution selection.
@@ -72,7 +79,7 @@ Acceptance will run first in the working checkout, then in a separate clean clon
 1. Record the OpenSpec 1.6.0 and patched OpenCode capability baseline without installing or replacing either tool.
 2. Reconcile project-level `opencode.json` and `openspec/config.yaml` with the repository/machine boundary.
 3. Inventory generated command/skill pairs, add continue, and make only validated compatibility or drift corrections.
-4. Add non-destructive validation, contributor guidance, and the Pull Request template.
+4. Add non-destructive validation, contributor guidance, root `AGENTS.md`, and the Pull Request template.
 5. Validate in the working checkout and a separate clone under a pre-existing second Linux user without invoking Unity.
 6. Review status and diffs to confirm only approved tooling, planning, documentation, and template paths changed.
 

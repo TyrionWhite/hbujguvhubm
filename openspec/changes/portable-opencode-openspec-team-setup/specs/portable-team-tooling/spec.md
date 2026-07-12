@@ -1,15 +1,34 @@
 ## ADDED Requirements
 
 ### Requirement: Repository-local project source of truth
-Repository-local files SHALL be the source of truth for OpenSpec workflows, commands, skills, portable project permissions, validation, and contributor documentation. Provider configuration, model endpoints, credentials, authentication, Linux users, systemd services, and private network configuration MUST remain machine-managed outside the repository.
+Repository-local files SHALL be the source of truth for OpenSpec workflows, commands, skills, portable project permissions, validation, contributor documentation, and contributor and coding-agent policy. Provider configuration, model endpoints, credentials, authentication, Linux users, systemd services, and private network configuration MUST remain machine-managed outside the repository.
 
 #### Scenario: Contributor opens a clean checkout
 - **WHEN** a contributor opens a clean checkout with the documented OpenSpec and patched OpenCode prerequisites already available
-- **THEN** the repository supplies its project workflows, permissions, validation, and contributor guidance without requiring contributor-specific copies of those project files
+- **THEN** the repository supplies its project workflows, permissions, validation, contributor guidance, and coding-agent policy without requiring contributor-specific copies of those project files
 
 #### Scenario: Machine-managed configuration is required for provider access
 - **WHEN** OpenCode requires provider, model, endpoint, credential, authentication, service, user, or network configuration
 - **THEN** the repository treats that configuration as an external prerequisite and does not install, duplicate, or manage it
+
+### Requirement: Repository-owned contributor and coding-agent policy
+The repository SHALL provide root `AGENTS.md` as repository-owned policy for contributors and coding agents. The policy SHALL define repository and Unity project boundaries; Git and Pull Request restrictions; OpenSpec planning, implementation, sync, and archive boundaries; Unity asset, `.meta`, GUID, generated-directory, scene, prefab, and serialization safety; maintainable modular architecture; authoritative gameplay-state and movement-output ownership; deterministic state resolution; debugging and diagnostics; rationale-focused comments and public API documentation; testability and regression expectations; non-destructive validation; and accurate final reporting. The policy MUST NOT define custom agent implementations, agent handoff contracts, or custom Unity-specific policy skills.
+
+#### Scenario: Contributor or coding agent scopes repository work
+- **WHEN** a contributor or coding agent prepares a repository change
+- **THEN** root `AGENTS.md` identifies the applicable repository boundary, approval and publication restrictions, OpenSpec workflow boundary, required validation, and final reporting expectations
+
+#### Scenario: Unity content is in scope
+- **WHEN** approved work touches Unity assets or serialized content
+- **THEN** root `AGENTS.md` requires preservation of tracked `.meta` files and GUIDs, avoidance of generated directories, paired asset moves, and careful review of scene, prefab, project-setting, and serialization changes
+
+#### Scenario: Gameplay behavior or architecture changes
+- **WHEN** approved work changes gameplay behavior, state, movement, animation, or skill interactions
+- **THEN** root `AGENTS.md` requires explicit authoritative ownership, deterministic state resolution, narrow system boundaries, useful diagnostics and documentation, regression coverage or scenarios, and truthful validation reporting
+
+#### Scenario: Custom agent extension is proposed
+- **WHEN** a contributor proposes custom agent definitions, handoff contracts, or Unity-specific policy skills
+- **THEN** the policy identifies that work as deferred from this setup and requires separately approved scope
 
 ### Requirement: Portable and non-secret OpenCode configuration
 The project-level `opencode.json` SHALL contain only portable project configuration and permissions and MUST NOT contain model endpoints, private addresses, passwords, API keys, authentication material, or machine-specific file dependencies. Repository tooling MUST NOT read, copy, expose the contents of, or depend on `/etc/opencode/team.json`.
@@ -56,7 +75,7 @@ The repository SHALL document prerequisites, lifecycle actions, validation, trou
 - **THEN** the template prompts for the OpenSpec reference, checks performed, and whether Unity files are in scope without exposing credentials or private configuration
 
 ### Requirement: Non-destructive multi-user validation
-The repository SHALL provide validation that checks required files, configuration syntax and boundaries, tool compatibility, lifecycle coverage, and command/skill drift without installing tools, changing files, invoking Unity, or performing repository publication operations.
+The repository SHALL provide validation that checks required files including root `AGENTS.md`, configuration syntax and boundaries, tool compatibility, lifecycle coverage, coding-agent policy coverage, and command/skill drift without installing tools, changing files, invoking Unity, or performing repository publication operations.
 
 #### Scenario: Validation runs in the working checkout
 - **WHEN** a contributor runs the documented validation command
